@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Assorted {
@@ -14,9 +16,18 @@ public class Assorted {
      *         integer data types.
      */
     public static int findSum(List<?> list) {
-        return 0;
-    }
+        int sum = 0;
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i) instanceof Integer){
+                sum += (Integer) list.get(i);
+            }
+            else{
+                sum += Integer.valueOf((String) list.get(i));
+            }
+        }
 
+        return sum;
+    }
     /**
      * Challenge 2
      *
@@ -26,7 +37,14 @@ public class Assorted {
      * @return a list containing integers only.
      */
     public static List<Integer> filterStrings(List list) {
-        return null;
+        List<Integer> intList = new ArrayList<>();
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i) instanceof Integer){
+                intList.add((Integer) list.get(i));
+            }
+        }
+
+        return intList;
     }
 
     /**
@@ -39,7 +57,14 @@ public class Assorted {
      *         e.g. ["1: a", "2: b", "3: c"]
      */
     public static List<String> lineNumbering(List<String> list) {
-        return null;
+        List<String> stringList = new ArrayList<>();
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i) instanceof String){
+                stringList.add((i + 1) + ": " + list.get(i));
+            }
+        }
+
+        return stringList;
     }
 
     /**
@@ -61,7 +86,12 @@ public class Assorted {
      * @return the number of people who are still on the bus after the last stop.
      */
     public static int busStop(List<Integer[]> list) {
-        return 0;
+        int passengers = 0;
+        for(Integer[] x: list){
+            passengers = passengers + x[0] - x[1];
+        }
+
+        return passengers;
     }
 
     /**
@@ -73,7 +103,12 @@ public class Assorted {
      *         Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1.
      */
     public static int toBinary(List<Integer> list) {
-        return 0;
+        int number = 0;
+        for(int i = 0; i < list.size(); i++){
+            number += Math.pow(2, i) * (list.get(list.size() - i - 1));
+        }
+
+        return number;
     }
 
     /**
@@ -92,7 +127,15 @@ public class Assorted {
      *              subtractList([1,2,2,2,3], [2]) returns [1,3]
      */
     public static List<Integer> subtractList(List<Integer> listA, List<Integer> listB) {
-        return null;
+        List<Integer> newList = new ArrayList<>();
+
+        for(Integer x: listA){
+            if (!listB.contains(x)) {
+                newList.add(x);
+            }
+        }
+
+        return newList;
     }
 
     /**
